@@ -1,1 +1,1 @@
-# C++ home tasks 
+# C++ exercises
