@@ -1,9 +1,8 @@
 #include <iostream>
-#include <cmath>  // For mathematical operations like floor
+#include <cmath>  
 
 const int MAX_STACK_SIZE = 100;
 
-// Function to compute factorial
 long factorial(int num) {
     long result = 1;
     for (int i = 2; i <= num; ++i) {
@@ -12,26 +11,22 @@ long factorial(int num) {
     return result;
 }
 
-// Evaluate RPN expression
 double evaluateRPN(const char* expression) {
     double stack[MAX_STACK_SIZE];
-    int top = -1; // Top of the stack
+    int top = -1; 
 
     for (int i = 0; expression[i] != '\0'; ++i) {
         char ch = expression[i];
 
-        // Skip whitespace
         if (ch == ' ') continue;
 
-        // If the character is a digit, parse the number
         if (ch >= '0' && ch <= '9') {
             double num = 0;
-            // Parse the integer part
             while (expression[i] >= '0' && expression[i] <= '9') {
                 num = num * 10 + (expression[i] - '0');
                 ++i;
             }
-            // Parse the fractional part, if any
+            
             if (expression[i] == '.') {
                 ++i;
                 double fraction = 0.1;
@@ -41,10 +36,10 @@ double evaluateRPN(const char* expression) {
                     ++i;
                 }
             }
-            --i; // Adjust for the outer loop increment
-            stack[++top] = num; // Push number onto stack
+            --i; 
+            stack[++top] = num; 
         } 
-        // Handle operators
+
         else {
             if (ch == '!') {
                 if (top < 0) {
