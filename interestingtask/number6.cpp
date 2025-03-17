@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include<string>
 
 std::string units[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 std::string teens[] = {"ten", "eleven", "twelve", "thirteen", "fourteen",
@@ -15,16 +15,16 @@ std::string numberToWords(int n) {
 
     std::string result = "";
 
-    result += hundreds[n / 100];
-    if (!result.empty() && n % 100 > 0) result += " ";
+    int h = n / 100;
+    int t = (n / 10) % 10;
+    int u = n % 10;
 
-    int lastTwo = n % 100;
-    if (lastTwo >= 10 && lastTwo < 20) {
-        result += teens[lastTwo - 10];
+    if (h) result += hundreds[h] + " ";
+    if (t == 1) {
+	    result += teens[u];
     } else {
-        result += tens[lastTwo / 10];
-        if (!result.empty() && lastTwo % 10 > 0) result += " ";
-        result += units[lastTwo % 10];
+	    if (t) result += tens[t] + " ";
+	    if (u) result += units[u];
     }
 
     return result;
